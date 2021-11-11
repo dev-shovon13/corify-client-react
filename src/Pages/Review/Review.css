@@ -1,0 +1,25 @@
+.review-width{
+    width: 95%;
+    margin: auto;
+}
+.slider img{
+    height: 250px;
+    width: 99%;
+    margin: auto;
+}
+.review-img{
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+}
+
+@media (max-width:768px) { 
+.review-txt{
+width: 90% !important;
+}
+}
+@media (min-width:992px){
+.right-quote{
+font-size: 70px !important;
+}
+}

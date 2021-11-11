@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Great+Vibes&family=Monoton&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+.banner{
+    background-image:  url("../../images/banner.jpg");
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: auto;
+}
+
+.sub-header, .header{
+    font-family: 'Montserrat', sans-serif; 
+}
+.header{
+    font-size: 100px;
+    font-weight: 800;
+    letter-spacing: -5px;
+    margin: -35px 0 -32px -5px;
+   
+}
+.sub-header{
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 2.5em;
+    letter-spacing: -.6px;
+}
+.header-bottom{
+    margin: -45px 0 0 30px;
+    font-size: 48px;
+    font-style: italic;
+    font-family: 'Great Vibes', cursive;
+    letter-spacing: -1.2px;
+}
+.price{
+    font-size: 60px;
+    font-family: 'Carter One', cursive;
+}
+.banner-btn{
+    transition: all 0.5s !important;
+}
+.banner-btn:hover{
+background-color: #293957 !important;
+color: white !important;
+}
+.drive{
+    background-color: #CE8339 !important;
+}
+.blue{
+    color: #293957;
+}
+@media (max-width:668px) {
+    .header{
+    font-size: 60px;
+    }
+    .header-bottom{
+    margin-top: -25px
+    }
+}

@@ -1,0 +1,62 @@
+.product-txt{
+    color: #749B00;
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+}
+.car-card{
+    overflow: hidden;
+    position: relative;
+    transition: all 1s !important;
+}
+.car-card-order{
+    width: 80%;
+    margin: auto;
+}
+.car-title{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 800;
+}
+.cars-header:hover{
+    background-color: #CE8339;
+    color: white;
+    cursor: pointer;
+}
+.car-name:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.product-img{
+    height: 220px;
+    width: 100%;
+    transition: all 0.5s;
+}
+.product-img-order{
+height: 250px;
+}
+.product-img:hover{
+    opacity: 0.8;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.buy-btn{
+    position: absolute;
+    top: 0;
+    margin: 0 auto !important;
+    display: none;
+    transition: all 0.9s;
+}
+.car-card:hover .buy-btn{
+    display: block;
+    transition: all 1s;
+}
+
+@media (max-width:668px){
+
+}
+@media (max-width:992px){
+    .car-card{
+    width: 70%;
+    margin: auto;
+    }
+}

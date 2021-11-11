@@ -1,0 +1,19 @@
+a{
+    text-decoration: none;
+    color: gray;
+}
+a:hover{
+    color: #CE8339
+}
+.brown{
+    color: #CE8339
+}
+.bg-brown{
+    background-color: #CE8339
+}
+
+@media (max-width:992px) {
+.top-bar{
+    display: none;
+}
+}
