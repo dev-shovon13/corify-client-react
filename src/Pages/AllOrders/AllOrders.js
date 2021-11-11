@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import './AllOrders.css'
 import { Helmet } from 'react-helmet';
 import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import { Button } from '@mui/material';
 
 const AllOrders = () => {
     const [services, setServices] = useState([])
@@ -34,7 +35,7 @@ const AllOrders = () => {
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             toast.error("Deleted Order Successfully")
-                            const remainingServices = services.filter(service => service._id !== id)
+                            const remainingServices = services.filter(product => product._id !== id)
                             setServices(remainingServices)
                         }
                     })
@@ -44,13 +45,13 @@ const AllOrders = () => {
 
     // update order 
     const handleApprove = (id) => {
-        const userService = []
-        services.filter(service => (service._id === id) && userService.push(service))
+        const userProduct = []
+        services.filter(product => (product._id === id) && userProduct.push(product))
         const updatedStatus = "Approved"
-        const updatedOrder = { ...userService }
+        const updatedOrder = { ...userProduct }
         updatedOrder.status = updatedStatus
 
-        axios.put(`https://traveezy.herokuapp.com/userServices/${id}`, updatedOrder)
+        axios.put(`https://traveezy.herokuapp.com/userProducts/${id}`, updatedOrder)
             .then(function (res) {
                 if (res.data.modifiedCount > 0) {
                     toast.success("Updated Order Successfully")
@@ -60,34 +61,34 @@ const AllOrders = () => {
                 toast.error(error);
             })
     }
-
+    const test = [1, 2, 3, 4, 5, 6, 7]
     return (
-        <div className="bg">
+        <div>
             <ScrollButton />
             <Helmet>
                 <title>Manage All Orders | Corify</title>
                 <meta name="This is the Manage All Orders page of Corify" content="Corify- Car Dealer Website" />
             </Helmet>
-            <div className="container p-5">
+            <div className="container p-4">
                 <ToastContainer theme="colored" />
-                <div className="row row-cols-1 row-cols-md-2 g-4">
+                <div className="row row-cols-1 row-cols-xl-2 g-4">
                     {
-                        services.map(service => {
-                            return <div className="col" key={service._id}>
-                                <div className="bg-white radius p-3 d-lg-flex service-body">
+                        test.map(product => {
+                            return <div className="col" key={product._id}>
+                                <div className="bg-light shadow-sm radius p-3 d-md-flex service-body">
                                     <div className="text-center mb-2 mb-lg-0">
-                                        <img src={service.img} alt="" className="img-fluid srv-img radius me-3" />
+                                        <img src="https://i.ibb.co/0rmLTmq/chevrolet-camaro-zl1-cornering.jpg" alt="" className="img-fluid srv-img radius me-3" />
                                     </div>
                                     <div>
-                                        <h5>Name: {service.name}</h5>
-                                        <p className="mb-0"><span className="fw-light">Email: </span> {service.email ? service.email : "Not Available"}</p>
-                                        <p className="mb-0"><span className="fw-light">Travel Destination: </span>{service.title}</p>
-                                        <p className="mb-0"><span className="fw-light">Total Members: </span>{service.member}</p>
-                                        <p className="mb-0"><span className="fw-light">Date: </span> {service.date}</p>
-                                        <p className="status">{service.status}</p>
+                                        <h5>Name: {product.name}</h5>
+                                        <p className="mb-0"><span className="fw-light">Email: </span> {product.email ? product.email : "Not Available"}</p>
+                                        <p className="mb-0"><span className="fw-light">Product: </span>{product.title}</p>
+                                        <p className="mb-0"><span className="fw-light">Type: </span>{product.type}</p>
+                                        <p className="mb-0"><span className="fw-light">Price: $</span>{product.price}</p>
+                                        <p className="status">{product.status}</p>
                                         <div className="service-btn">
-                                            <button className="btn btn-success btn-sm me-2" onClick={() => handleApprove(service._id)} >Approve</button>
-                                            <button className="btn btn-danger btn-sm " onClick={() => handleDelete(service._id)}>Cancel</button>
+                                            <Button variant="contained" size="small" color="success" className="me-2" onClick={() => handleApprove(product._id)} >Approve</Button>
+                                            <Button variant="contained" size="small" color="error" onClick={() => handleDelete(product._id)}>Cancel</Button>
                                         </div>
                                     </div>
                                 </div>

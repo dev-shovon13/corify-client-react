@@ -1,6 +1,6 @@
 import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import login from '../../images/login.png'
 import google from '../../images/google.png'
@@ -13,66 +13,37 @@ import { Button, TextField } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 
 const LogIn = () => {
-    // imports 
-    const { signInUsingGoogle, signInUsingGithub, signInUsingTwitter, signInUsingFacebook, error, setError, handleEmail, handlePassword, handleSubmit, handleUserSignIn, setUser, setUserName, setIsLoading } = useAuth()
+    const [loginData, setLoginData] = useState({});
+    const { loginUser, signInWithGoogle, signInWithGithub, signInWithFacebook, signInWithTwitter, authError } = useAuth();
 
-    const location = useLocation()
-    const history = useHistory()
-    const redirect_URI = location.state?.from || '/home'
+    const location = useLocation();
+    const history = useHistory();
 
-    // sign in using google
-    const handleGoogleLogIn = () => {
-        signInUsingGoogle()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleOnChange = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
     }
-    // sign in using github
-    const handleGithubLogIn = () => {
-        signInUsingGithub()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleLoginSubmit = e => {
+        loginUser(loginData.email, loginData.password, location, history);
+        e.preventDefault();
     }
-    // sign in using twitter
-    const handleTwitterLogIn = () => {
-        signInUsingTwitter()
-            .then(result => {
-                console.log(result);
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, history)
     }
-    // sign in using facebook
-    const handleFacebookLogIn = () => {
-        signInUsingFacebook()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleGithubSignIn = () => {
+        signInWithGithub(location, history)
     }
-    // sign in using email and password 
-    const handleSignIn = () => {
-        handleUserSignIn()
-            .then(result => {
-                setUser(result.user)
-                setUserName(result.user.displayName)
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleFacebookSignIn = () => {
+        signInWithFacebook(location, history)
     }
+    const handleTwitterSignIn = () => {
+        signInWithTwitter(location, history)
+    }
+
     return (
         <div className="log-in-bg pt-5 pb-5 text-center">
             <Helmet>
@@ -85,27 +56,27 @@ const LogIn = () => {
                         <img src={logo} alt="" className="log-sign-logo mb-3" />
                     </NavLink>                    <div className="row align-items-center">
                         <div className="login-form col-12 col-lg-6 pt-2 pt-lg-0">
-                            <form className="" onSubmit={handleSubmit}>
+                            <form className="" onSubmit={handleLoginSubmit}>
                                 <div className="mb-3">
-                                    <TextField required fullWidth size="small" label="Email" variant="outlined" placeholder="Email" onBlur={handleEmail} />
+                                    <TextField required fullWidth size="small" label="Email" variant="outlined" placeholder="Email" name="email" onChange={handleOnChange} />
                                 </div>
                                 <div className="mb-3">
-                                    <TextField required fullWidth type="password" size="small" label="Password" variant="outlined" placeholder="Password" onBlur={handlePassword} />
+                                    <TextField required fullWidth type="password" size="small" label="Password" variant="outlined" placeholder="Password" name="password" onChange={handleOnChange} />
                                 </div>
                                 <div className="mb-3 text-start">
                                     <NavLink to="/login" className="text-decoration-none text-info">Forgot Password ?</NavLink>
                                 </div>
-                                <Button onClick={handleSignIn} fullWidth variant="contained" type='submit'><LoginIcon className="me-2" />Log In</Button>
-                                <div className="text-danger fw-bold fs-6">{error}</div>
+                                <Button fullWidth variant="contained" type='submit'><LoginIcon className="me-2" />Log In</Button>
+                                <div className="text-danger fw-bold fs-6">{authError}</div>
                             </form>
                             <div className="border-top mt-2">
                                 <p className="my-0 text-secondary fw-bold">or</p>
                                 <p className="mt-0 text-secondary">Log In with any of these Accounts</p>
                                 <div className="d-flex gap-2 justify-content-center">
-                                    <img onClick={handleGoogleLogIn} src={google} alt="" style={{ height: "45px" }} className="me-2 border rounded-circle p-1 shadow fs-icon" />
-                                    <FontAwesomeIcon onClick={handleGithubLogIn} icon={faGithub} className="me-2 border rounded-circle p-2 shadow fs-icon" />
-                                    <FontAwesomeIcon onClick={handleTwitterLogIn} icon={faTwitter} className="icon-twitter me-2 border rounded-circle p-2 shadow fs-icon" />
-                                    <FontAwesomeIcon onClick={handleFacebookLogIn} icon={faFacebook} className="icon-facebook me-2 border rounded-circle p-2 shadow fs-icon" />
+                                    <img onClick={handleGoogleSignIn} src={google} alt="" style={{ height: "45px" }} className="me-2 border rounded-circle p-1 shadow fs-icon" />
+                                    <FontAwesomeIcon onClick={handleGithubSignIn} icon={faGithub} className="me-2 border rounded-circle p-2 shadow fs-icon" />
+                                    <FontAwesomeIcon onClick={handleTwitterSignIn} icon={faTwitter} className="icon-twitter me-2 border rounded-circle p-2 shadow fs-icon" />
+                                    <FontAwesomeIcon onClick={handleFacebookSignIn} icon={faFacebook} className="icon-facebook me-2 border rounded-circle p-2 shadow fs-icon" />
                                 </div>
                             </div>
                         </div>

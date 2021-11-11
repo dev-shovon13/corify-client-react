@@ -6,19 +6,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 import { Helmet } from 'react-helmet';
 import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import { Button } from '@mui/material';
 
 const MyOrders = () => {
     const { user } = useAuth()
-    const [services, setServices] = useState([])
+    const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch("https://traveezy.herokuapp.com/userServices")
+        fetch("https://traveezy.herokuapp.com/userProducts")
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => setProducts(data))
     }, [])
-    const userServices = []
-    services.filter(service => (service.currentUser === user.uid) && userServices.push(service))
+    const userProducts = []
+    products.filter(product => (product.currentUser === user.uid) && userProducts.push(product))
 
-    // delete a service 
+    // delete a product 
     const handleDelete = id => {
         Swal.fire({
             title: 'Are you sure?',
@@ -33,50 +34,54 @@ const MyOrders = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://traveezy.herokuapp.com/userServices/${id}`)
+                axios.delete(`https://traveezy.herokuapp.com/userProducts/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             toast.error("Deleted Order Successfully")
-                            const remainingServices = services.filter(service => service._id !== id)
-                            setServices(remainingServices)
+                            const remainingProducts = products.filter(product => product._id !== id)
+                            setProducts(remainingProducts)
                         }
                     })
             }
         })
     }
+
+    const test = [1, 2, 3]
+
     return (
-        <div className="bg pb-5">
+        <div >
             <ScrollButton />
             <Helmet>
                 <title>My Orders | Corify</title>
                 <meta name="This is the My Orders page of Corify" content="Corify- Car Dealer Website" />
             </Helmet>
             <ToastContainer theme="colored" />
-            <div className="container p-5">
-                <div className="row row-cols-1 row-cols-lg-2 g-4">
+            <div className="container p-4">
+                <div className="row row-cols-1 row-cols-xl-2 g-4">
                     {
-                        userServices.length === 0 ? <h2 className="text-center text-success w-75 mx-auto">You Have No Orders</h2>
-                            :
-                            userServices.map(service => {
-                                return <div className="col" key={service._id}>
-                                    <div className="bg-white radius p-3 d-md-flex service-body">
-                                        <div className="text-center mb-2 mb-md-0">
-                                            <img src={service.img} alt="" className="img-fluid srv-img radius me-3" />
-                                        </div>
-                                        <div>
-                                            <h5>Name: {service.name}</h5>
-                                            <p className="mb-0"><span className="fw-light">Email: </span> {service.email ? service.email : "Not Available"}</p>
-                                            <p className="mb-0"><span className="fw-light">Travel Destination: </span>{service.title}</p>
-                                            <p className="mb-0"><span className="fw-light">Total Members: </span>{service.member}</p>
-                                            <p className="mb-0"><span className="fw-light">Date: </span> {service.date}</p>
-                                            <p className="status">{service.status}</p>
-                                            <div className="service-btn">
-                                                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(service._id)}>Cancel</button>
-                                            </div>
+                        // userProducts.length === 0 ? <h2 className="text-center text-success w-75 mx-auto">You Have No Orders</h2>
+                        //     :
+                        //     userProducts.map(product => {
+                        test.map(product => {
+                            return <div className="col" key={product._id}>
+                                <div className="bg-light shadow-sm radius p-3 d-md-flex service-body">
+                                    <div className="text-center mb-2 mb-lg-0">
+                                        <img src="https://i.ibb.co/0rmLTmq/chevrolet-camaro-zl1-cornering.jpg" alt="" className="img-fluid srv-img radius me-3" />
+                                    </div>
+                                    <div>
+                                        <h5>Name: {product.name}</h5>
+                                        <p className="mb-0"><span className="fw-light">Email: </span> {product.email ? product.email : "Not Available"}</p>
+                                        <p className="mb-0"><span className="fw-light">Product: </span>{product.title}</p>
+                                        <p className="mb-0"><span className="fw-light">Type: </span>{product.type}</p>
+                                        <p className="mb-0"><span className="fw-light">Price: $</span>{product.price}</p>
+                                        <p className="status">{product.status}</p>
+                                        <div className="service-btn">
+                                            <Button variant="contained" size="small" color="error" onClick={() => handleDelete(product._id)}>Cancel</Button>
                                         </div>
                                     </div>
                                 </div>
-                            })
+                            </div>
+                        })
                     }
                 </div>
             </div>

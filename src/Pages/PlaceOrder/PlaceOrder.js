@@ -35,10 +35,11 @@ const PlaceOrder = () => {
         const name = nameRef.current.value
         const email = emailRef.current.value
         const number = numberRef.current.value
+        const title = product.name
         const img = product.img
         const status = "Pending"
 
-        const newProduct = { currentUser, name, email, address, number, img, status }
+        const newProduct = { currentUser, name, email, address, number, title, img, status }
         console.log(newProduct);
 
         // axios.post('https://traveezy.herokuapp.com/userServices', newProduct)

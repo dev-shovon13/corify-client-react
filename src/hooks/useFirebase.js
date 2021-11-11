@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-// import initializeAuthentication from '../Firebase/firebase.initialization';
 import initializeAuthentication from '../Firebase/firebase.initialization';
 
 // importing from firebase 
-import { getAuth, GoogleAuthProvider, GithubAuthProvider, TwitterAuthProvider, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider, TwitterAuthProvider, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, getIdToken } from "firebase/auth";
 
 initializeAuthentication()
 
@@ -11,10 +10,9 @@ const useFirebase = () => {
     // initializing states 
     const [user, setUser] = useState({})
     const [isLoading, setIsLoading] = useState(true);
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const [authError, setAuthError] = useState('');
+    const [admin, setAdmin] = useState(false);
+    const [token, setToken] = useState('');
 
     // firebase auth 
     const auth = getAuth();
@@ -25,39 +23,124 @@ const useFirebase = () => {
     const twitterProvider = new TwitterAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
 
-    // sign in using google account 
-    const signInUsingGoogle = () => {
+
+    const registerUser = (email, password, name, history) => {
         setIsLoading(true);
-        return signInWithPopup(auth, googleProvider)
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                setAuthError('');
+                const newUser = { email, displayName: name };
+                setUser(newUser);
+                // save user to the database
+                saveUser(email, name, 'POST');
+                // send name to firebase after creation
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                }).catch((error) => {
+                });
+                history.replace('/');
+            })
+            .catch((error) => {
+                setAuthError(error.message);
+                console.log(error);
+            })
+            .finally(() => setIsLoading(false));
     }
-    // sign in using github account 
-    const signInUsingGithub = () => {
+
+    const loginUser = (email, password, location, history) => {
         setIsLoading(true);
-        return signInWithPopup(auth, githubProvider)
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+                setAuthError('');
+            })
+            .catch((error) => {
+                setAuthError(error.message);
+            })
+            .finally(() => setIsLoading(false));
     }
-    // sign in using twitter account 
-    const signInUsingTwitter = () => {
+
+    // sign in with google 
+    const signInWithGoogle = (location, history) => {
         setIsLoading(true);
-        return signInWithPopup(auth, twitterProvider)
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT');
+                setAuthError('');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+            }).catch((error) => {
+                setAuthError(error.message);
+            }).finally(() => setIsLoading(false));
     }
-    // sign in using facebook account 
-    const signInUsingFacebook = () => {
+    // sign in with github 
+    const signInWithGithub = (location, history) => {
         setIsLoading(true);
-        return signInWithPopup(auth, facebookProvider)
+        signInWithPopup(auth, githubProvider)
+            .then((result) => {
+                const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT');
+                setAuthError('');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+            }).catch((error) => {
+                setAuthError(error.message);
+            }).finally(() => setIsLoading(false));
     }
-    // observe whether user auth state changed or not
+    // sign in with facebook 
+    const signInWithFacebook = (location, history) => {
+        setIsLoading(true);
+        signInWithPopup(auth, facebookProvider)
+            .then((result) => {
+                const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT');
+                setAuthError('');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+            }).catch((error) => {
+                setAuthError(error.message);
+            }).finally(() => setIsLoading(false));
+    }
+    // sign in with twitter 
+    const signInWithTwitter = (location, history) => {
+        setIsLoading(true);
+        signInWithPopup(auth, twitterProvider)
+            .then((result) => {
+                const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT');
+                setAuthError('');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+            }).catch((error) => {
+                setAuthError(error.message);
+            }).finally(() => setIsLoading(false));
+    }
+
+    // observer user state
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
+                getIdToken(user)
+                    .then(idToken => {
+                        setToken(idToken);
+                    })
             } else {
                 setUser({})
             }
             setIsLoading(false);
         });
-        return () => unsubscribed
-        // eslint-disable-next-line
-    }, [])
+        return () => unsubscribed;
+    }, [auth])
+
+    useEffect(() => {
+        fetch(`https://stark-caverns-04377.herokuapp.com/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
 
     // user logout 
     const logOut = () => {
@@ -69,67 +152,32 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    // Creating new user start
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if (password.length < 6) {
-            setError('Password Must be at least 6 characters long.')
-            return;
-        }
-    }
-
-    const handleName = (e) => {
-        setName(e.target.value);
-    }
-
-    const setUserName = () => {
-        updateProfile(auth.currentUser, {
-            displayName: name
-        }).then(() => {
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('https://stark-caverns-04377.herokuapp.com/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
         })
-    }
-
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-
-    const handleUserSignUp = () => {
-        setIsLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
-    // Creating new user end
-
-    // existing user sign in
-    const handleUserSignIn = () => {
-        setIsLoading(true);
-        return signInWithEmailAndPassword(auth, email, password)
+            .then()
     }
 
     // exporting states and functions
     return {
         user,
-        setUser,
-        password,
-        error,
-        setError,
+        admin,
+        token,
+        authError,
         isLoading,
-        setIsLoading,
-        signInUsingGoogle,
-        signInUsingGithub,
-        signInUsingTwitter,
-        signInUsingFacebook,
+        registerUser,
+        loginUser,
+        signInWithGoogle,
+        signInWithGithub,
+        signInWithFacebook,
+        signInWithTwitter,
         logOut,
-        handleSubmit,
-        handleName,
-        setUserName,
-        handleEmail,
-        handlePassword,
-        handleUserSignIn,
-        handleUserSignUp
     }
 };
 

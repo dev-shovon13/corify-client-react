@@ -23,13 +23,13 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
+// import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import useAuth from '../../hooks/useAuth';
 import MyOrders from '../MyOrders/MyOrders';
 import Payment from './Payment/Payment';
-import DashHome from './DashHome';
+// import DashHome from './DashHome';
 import NewProduct from '../NewProduct/NewProduct'
 import UserRating from './UserRating/UserRating';
 import AllOrders from '../AllOrders/AllOrders';
@@ -37,7 +37,6 @@ import ManageProduct from './ManageProduct/ManageProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import logo from '../../images/logo.png'
 import userAvatar from '../../images/avatar.png'
-import ManageProductSingle from './ManageProduct/ManageProductSingle';
 
 // import AdminRoute from './../../Login/AdminRoute/AdminRoute';
 
@@ -237,7 +236,6 @@ function Dashboard(props) {
                     </Route>
                     <Route path={`${path}/manageProduct`}>
                         <ManageProduct />
-                        {/* <ManageProductSingle /> */}
                     </Route>
                     {/* <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>

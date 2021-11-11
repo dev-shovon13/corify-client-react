@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
@@ -11,73 +11,49 @@ import './SignUp.css'
 import logo from '../../images/logo.png'
 import { Button, TextField } from '@mui/material';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignUp = () => {
-    // imports 
-    const { signInUsingGoogle, signInUsingGithub, signInUsingTwitter, signInUsingFacebook, error, setError, handleName, handleEmail, handlePassword, handleUserSignUp, handleSubmit, setUser, setUserName, setIsLoading } = useAuth()
 
-    const location = useLocation()
-    const history = useHistory()
-    const redirect_URI = location.state?.from || '/home'
+    const [loginData, setLoginData] = useState({});
+    const history = useHistory();
+    const location = useLocation();
 
-    // sign in using google
-    const handleGoogleLogIn = () => {
-        signInUsingGoogle()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const { registerUser, authError, signInWithGoogle, signInWithGithub, signInWithFacebook, signInWithTwitter } = useAuth();
+
+    const handleOnBlur = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
     }
-    // sign in using github
-    const handleGithubLogIn = () => {
-        signInUsingGithub()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleSignUp = e => {
+        if (loginData.password !== loginData.password2) {
+            toast.error("Your Password Didn't Match")
+            return
+        }
+        registerUser(loginData.email, loginData.password, loginData.name, history);
+        e.preventDefault();
     }
-    // sign in using twitter
-    const handleTwitterLogIn = () => {
-        signInUsingTwitter()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, history)
     }
-    // sign in using facebook
-    const handleFacebookLogIn = () => {
-        signInUsingFacebook()
-            .then(result => {
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleGithubSignIn = () => {
+        signInWithGithub(location, history)
     }
-    // sign up using email and password 
-    const handleSignUp = () => {
-        handleUserSignUp()
-            .then(result => {
-                console.log('user', result.user);
-                console.log('userName', result.user.displayName);
-                console.log('userEmail', result.user.email);
-                setUser(result.user)
-                setUserName(result.user.displayName)
-                history.push(redirect_URI)
-                setError('')
-            }).catch((error) => {
-                setError(error.message)
-            }).finally(() => setIsLoading(false));
+    const handleFacebookSignIn = () => {
+        signInWithFacebook(location, history)
     }
+    const handleTwitterSignIn = () => {
+        signInWithTwitter(location, history)
+    }
+
     return (
         <div className="sign-up-bg text-center">
+            <ToastContainer theme="colored" />
             <Helmet>
                 <title>Sign Up | Corify</title>
                 <meta name="This is the signup page of Corify" content="Corify- Car Dealer Website" />
@@ -92,31 +68,34 @@ const SignUp = () => {
                             <img src={signup} alt="" className="img-fluid" />
                         </div>
                         <div className="col-12 col-lg-6">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSignUp}>
                                 <div className="mb-3 d-flex ">
-                                    <TextField required fullWidth size="small" label="Name" variant="outlined" placeholder="Name" onBlur={handleName} />
+                                    <TextField required fullWidth size="small" label="Name" name="name" variant="outlined" placeholder="Name" onBlur={handleOnBlur} />
                                 </div>
                                 <div className="mb-3">
-                                    <TextField required fullWidth size="small" label="Email" variant="outlined" placeholder="Email" onBlur={handleEmail} />
+                                    <TextField required fullWidth size="small" label="Email" name="email" variant="outlined" placeholder="Email" onBlur={handleOnBlur} />
                                 </div>
                                 <div className="mb-3">
-                                    <TextField required fullWidth type="password" size="small" label="Password" variant="outlined" placeholder="Password" onBlur={handlePassword} />
+                                    <TextField required fullWidth type="password" size="small" label="Password" variant="outlined" placeholder="Password" name="password" onBlur={handleOnBlur} />
+                                </div>
+                                <div className="mb-3">
+                                    <TextField required fullWidth type="password" size="small" label="Confirm Password" variant="outlined" placeholder="Confirm Password" name="password2" onBlur={handleOnBlur} />
                                 </div>
                                 <div className="mb-3 form-check text-start">
                                     <input type="checkbox" className="form-check-input" />
                                     <label className="form-check-label text-secondary">I accept the <NavLink to="/signup" className="text-decoration-none text-info">Terms of Use</NavLink> & <NavLink to="/signup" className="text-decoration-none text-info">Privacy Policy</NavLink></label>
                                 </div>
-                                <Button onClick={handleSignUp} fullWidth variant="contained" type='submit'><FingerprintIcon className="me-2" />Sign Up</Button>
-                                <div className="text-danger fw-bold fs-6">{error}</div>
+                                <Button fullWidth variant="contained" type='submit'><FingerprintIcon className="me-2" />Sign Up</Button>
+                                <div className="text-danger fw-bold fs-6">{authError}</div>
                             </form>
                             <div className="border-top mt-2">
                                 <p className="my-0 text-secondary fw-bold">or</p>
                                 <p className="mt-0 text-secondary">Log In with any of these Accounts</p>
                                 <div className="d-flex gap-2 justify-content-center">
-                                    <img onClick={handleGoogleLogIn} src={google} alt="" style={{ height: "45px" }} className="me-2 border rounded-circle p-1 shadow fs-icon" />
-                                    <FontAwesomeIcon onClick={handleGithubLogIn} icon={faGithub} className="me-2 border rounded-circle p-2 shadow fs-icon" />
-                                    <FontAwesomeIcon onClick={handleTwitterLogIn} icon={faTwitter} className="icon-twitter me-2 border rounded-circle p-2 shadow fs-icon" />
-                                    <FontAwesomeIcon onClick={handleFacebookLogIn} icon={faFacebook} className="icon-facebook me-2 border rounded-circle p-2 shadow fs-icon" />
+                                    <img onClick={handleGoogleSignIn} src={google} alt="" style={{ height: "45px" }} className="me-2 border rounded-circle p-1 shadow fs-icon" />
+                                    <FontAwesomeIcon onClick={handleGithubSignIn} icon={faGithub} className="me-2 border rounded-circle p-2 shadow fs-icon" />
+                                    <FontAwesomeIcon onClick={handleTwitterSignIn} icon={faTwitter} className="icon-twitter me-2 border rounded-circle p-2 shadow fs-icon" />
+                                    <FontAwesomeIcon onClick={handleFacebookSignIn} icon={faFacebook} className="icon-facebook me-2 border rounded-circle p-2 shadow fs-icon" />
                                 </div>
                             </div>
                         </div>
