@@ -37,6 +37,7 @@ import ManageProduct from './ManageProduct/ManageProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import logo from '../../images/logo.png'
 import userAvatar from '../../images/avatar.png'
+import ManageProductSingle from './ManageProduct/ManageProductSingle';
 
 // import AdminRoute from './../../Login/AdminRoute/AdminRoute';
 
@@ -236,6 +237,7 @@ function Dashboard(props) {
                     </Route>
                     <Route path={`${path}/manageProduct`}>
                         <ManageProduct />
+                        {/* <ManageProductSingle /> */}
                     </Route>
                     {/* <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>

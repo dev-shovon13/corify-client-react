@@ -16,7 +16,7 @@ const Home = () => {
             <Review />
             <ScrollButton />
             <Helmet>
-                <title>Corify</title>
+                <title>Corify- Automotive Center</title>
                 <meta name="This is the Home page of Corify" content="Corify- Car Dealer Website" />
             </Helmet>
         </>
