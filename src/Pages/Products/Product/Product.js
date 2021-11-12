@@ -29,21 +29,20 @@ const Service = (props) => {
                     <img src={img} alt="" className="img-fluid product-img" />
                 </div>
                 <h4 className="text-start product-txt my-2">${price}</h4>
-                <p className="text-start text-secondary mb-0">{type}</p>
-                <h5 className="text-start car-name blue pb-2 border-bottom">{name}</h5>
+                <p className="text-start text-secondary mb-0 text-capitalize">{type}</p>
+                <h5 className="text-start car-name blue pb-2 border-bottom text-capitalize">{name}</h5>
                 <div className="d-flex justify-content-between">
-                    <div className="d-flex px-2">
-                        <span className="fw-light"><SpeedIcon /> {transmission}</span>
+                    <div className="d-flex px-2 px-md-1">
+                        <span className="fw-light text-capitalize d-flex flex-column d-sm-block justify-content-center"><span><SpeedIcon /></span> <span>{transmission}</span></span>
                     </div>
-                    <div className="d-flex px-2 border-start border-end">
-                        <span className="fw-light"><SettingsIcon /> {wheel}</span>
+                    <div className="d-flex px-2 px-md-1 border-start border-end">
+                        <span className="fw-light px-3 px-md-0 text-capitalize d-flex flex-column d-sm-block justify-content-center"><span><SettingsIcon /></span> <span>{wheel.toUpperCase()}</span></span>
                     </div>
-                    <div className="d-flex px-2">
-                        <span className="fw-light"><MapIcon /> {run} KM</span>
+                    <div className="d-flex px-2 px-md-1">
+                        <span className="fw-light text-capitalize d-flex flex-column d-sm-block justify-content-center"><span><MapIcon /></span> <span>{run} KM</span></span>
                     </div>
                 </div>
-                {/* <Link to={"/placeOrder/" + _id} className="buy-btn"> */}
-                <Link to="/placeOrder" className="buy-btn">
+                <Link to={"/placeOrder/" + _id} className="buy-btn">
                     <Button onClick={notify} variant="contained" size="small" className="banner-btn drive me-2 text-white fw-bold rounded-0">
                         <AddShoppingCartIcon />Buy Now
                     </Button>

@@ -9,20 +9,23 @@ import signup from '../../images/signup.png'
 import google from '../../images/google.png'
 import './SignUp.css'
 import logo from '../../images/logo.png'
-import { Button, TextField } from '@mui/material';
+import { Button, Checkbox, TextField } from '@mui/material';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignUp = () => {
-
     const [loginData, setLoginData] = useState({});
+    const [checked, setChecked] = useState(false);
     const history = useHistory();
     const location = useLocation();
 
     const { registerUser, authError, signInWithGoogle, signInWithGithub, signInWithFacebook, signInWithTwitter } = useAuth();
 
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
@@ -33,6 +36,10 @@ const SignUp = () => {
     const handleSignUp = e => {
         if (loginData.password !== loginData.password2) {
             toast.error("Your Password Didn't Match")
+            return
+        }
+        if (!checked) {
+            toast.error("Checkbox is Required")
             return
         }
         registerUser(loginData.email, loginData.password, loginData.name, history);
@@ -58,7 +65,7 @@ const SignUp = () => {
                 <title>Sign Up | Corify</title>
                 <meta name="This is the signup page of Corify" content="Corify- Car Dealer Website" />
             </Helmet>
-            <div className="container py-5">
+            <div className="container pt-5 pb-4">
                 <div className="bg-white rounded shadow p-4 g-4 w-75 mx-auto log-sign">
                     <NavLink to="/home" className="text-decoration-none text-info">
                         <img src={logo} alt="" className="log-sign-logo mb-3" />
@@ -81,8 +88,11 @@ const SignUp = () => {
                                 <div className="mb-3">
                                     <TextField required fullWidth type="password" size="small" label="Confirm Password" variant="outlined" placeholder="Confirm Password" name="password2" onBlur={handleOnBlur} />
                                 </div>
-                                <div className="mb-3 form-check text-start">
-                                    <input type="checkbox" className="form-check-input" />
+                                <div className="mb-3 text-start">
+                                    <Checkbox
+                                        checked={checked}
+                                        onChange={handleChange}
+                                    />
                                     <label className="form-check-label text-secondary">I accept the <NavLink to="/signup" className="text-decoration-none text-info">Terms of Use</NavLink> & <NavLink to="/signup" className="text-decoration-none text-info">Privacy Policy</NavLink></label>
                                 </div>
                                 <Button fullWidth variant="contained" type='submit'><FingerprintIcon className="me-2" />Sign Up</Button>

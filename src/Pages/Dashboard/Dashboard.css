@@ -1,0 +1,9 @@
+.side-drawer{
+    position: relative;
+}
+.logout-position{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 196, 0, 0.5);
+}

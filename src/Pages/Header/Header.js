@@ -45,16 +45,16 @@ const Header = () => {
                         <ul className="navbar-nav mb-2 mb-lg-0">
                             {
                                 user.displayName || user.email ?
-                                    <div className="d-flex">
-                                        <div className="d-flex align-items-center justify-content-center">
-                                            {user.photoURL ?
-                                                <img src={user.photoURL} alt="" style={{ height: '35px', borderRadius: '50%' }} className="me-2" />
-                                                :
-                                                <img src={userAvatar} alt="" style={{ height: '35px', borderRadius: '50%' }} className="me-2" />}
-                                            {user.displayName ?
-                                                <span className="fw-bold text-dark">{user.displayName}</span>
-                                                :
-                                                <span className="fw-bold text-dark">{user.email.substring(0, user.email.lastIndexOf("@"))}</span>}
+                                    <div className="d-md-flex align-items-center justify-content-center">
+                                        {user.photoURL ?
+                                            <img src={user.photoURL} alt="" style={{ height: '35px', borderRadius: '50%' }} className="me-2" />
+                                            :
+                                            <img src={userAvatar} alt="" style={{ height: '35px', borderRadius: '50%' }} className="me-2" />}
+                                        {user.displayName ?
+                                            <span className="fw-bold text-dark">{user.displayName}</span>
+                                            :
+                                            <span className="fw-bold text-dark">{user.email.substring(0, user.email.lastIndexOf("@"))}</span>}
+                                        <div className="d-flex align-items-center">
                                             <li className="nav-item">
                                                 <NavLink onClick={notify} className="nav-link" activeStyle={{ color: "#F91944", fontWeight: "bold" }} to="/dashboard">
                                                     <Button variant="outlined" size="small" className="banner-btn theme theme-outline text-capitalize rounded-0 ms-2">
@@ -62,7 +62,7 @@ const Header = () => {
                                                     </Button>
                                                 </NavLink>
                                             </li>
-                                            <Button onClick={logOut} variant="contained" size="small" className="banner-btn text-capitalize ms-2 text-white bg-danger rounded-0">
+                                            <Button onClick={logOut} style={{ height: '32px' }} variant="contained" size="small" className="banner-btn text-capitalize ms-2 text-white bg-danger rounded-0">
                                                 <LoginIcon /><span className="ms-2">Logout</span>
                                             </Button>
                                         </div>

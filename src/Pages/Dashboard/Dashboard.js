@@ -23,13 +23,12 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LoginIcon from '@mui/icons-material/Login';
-// import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import useAuth from '../../hooks/useAuth';
 import MyOrders from '../MyOrders/MyOrders';
 import Payment from './Payment/Payment';
-// import DashHome from './DashHome';
 import NewProduct from '../NewProduct/NewProduct'
 import UserRating from './UserRating/UserRating';
 import AllOrders from '../AllOrders/AllOrders';
@@ -37,8 +36,8 @@ import ManageProduct from './ManageProduct/ManageProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import logo from '../../images/logo.png'
 import userAvatar from '../../images/avatar.png'
-
-// import AdminRoute from './../../Login/AdminRoute/AdminRoute';
+import AdminRoute from '../AdminRoute/AdminRoute';
+import './Dashboard.css'
 
 const drawerWidth = 240;
 
@@ -52,83 +51,91 @@ function Dashboard(props) {
     };
 
     const drawer = (
-        <div>
+        <div >
             <Link to="/home">
                 <Toolbar >
                     <img src={logo} height="40" width="130" alt="" />
                 </Toolbar>
             </Link>
             <Divider />
-            <List>
-                {/* user part  */}
-                <Link to={`${url}`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ShoppingCartIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="My Orders" />
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/payment`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <PaymentIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Payment" />
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/rating`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <RateReviewIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Review" />
-                    </ListItem>
-                </Link>
-                {/* admin part  */}
-                <Link to={`${url}/allOrders`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ShoppingCartIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Manage All Orders" />
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/addNew`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AddCircleOutlineIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Add a Product" />
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/makeAdmin`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AdminPanelSettingsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Make Admin" />
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/manageProduct`} className="text-decoration-none text-secondary">
-                    <ListItem button>
-                        <ListItemIcon>
-                            <DirectionsCarIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Manage Products" />
-                    </ListItem>
-                </Link>
+            {/* user part  */}
+            {
+                user && !admin && <List>
+                    <Link to={`${url}`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <ShoppingCartIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="My Orders" />
+                        </ListItem>
+                    </Link>
+                    <Link to={`${url}/payment`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PaymentIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Payment" />
+                        </ListItem>
+                    </Link>
+                    <Link to={`${url}/rating`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <RateReviewIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Review" />
+                        </ListItem>
+                    </Link>
+                </List>
+            }
+            {/* admin part  */}
+            {
+                admin && <List>
+                    <Link to={`${url}`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <ShoppingCartIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Manage All Orders" />
+                        </ListItem>
+                    </Link>
+                    <Link to={`${url}/addNew`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <AddCircleOutlineIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Add a Product" />
+                        </ListItem>
+                    </Link>
+                    <Link to={`${url}/makeAdmin`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <AdminPanelSettingsIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Make Admin" />
+                        </ListItem>
+                    </Link>
+                    <Link to={`${url}/manageProduct`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <DirectionsCarIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Manage Products" />
+                        </ListItem>
+                    </Link>
+                </List>
+            }
 
-                {/* common part  */}
-                {/* <Link to="/home" className="text-decoration-none text-secondary">
+            {/* common part  */}
+            <div className="logout-position">
+                <Link to="/home" className="text-decoration-none text-secondary">
                     <ListItem button onClick={logOut}>
                         <ListItemIcon>
-                            <LogoutIcon />
+                            <LogoutIcon className="text-danger fw-bold" />
                         </ListItemIcon>
-                        <ListItemText primary="Logout" />
+                        <ListItemText primary="Logout" className="text-danger fw-bolder" />
                     </ListItem>
-                </Link> */}
-            </List>
+                </Link>
+            </div>
         </div>
     );
 
@@ -181,6 +188,7 @@ function Dashboard(props) {
                 aria-label="mailbox folders"
             >
                 <Drawer
+                    className="side-drawer"
                     container={container}
                     variant="temporary"
                     open={mobileOpen}
@@ -196,6 +204,7 @@ function Dashboard(props) {
                     {drawer}
                 </Drawer>
                 <Drawer
+                    className="side-drawer"
                     variant="permanent"
                     sx={{
                         display: { xs: 'none', sm: 'block' },
@@ -214,29 +223,29 @@ function Dashboard(props) {
 
                 <Switch>
                     <Route exact path={path}>
-                        <MyOrders />
+                        {admin ? <AllOrders /> : <MyOrders />}
                     </Route>
-                    <Route exact path={`${path}/myOrders`}>
+                    {/* <Route exact path={`${path}/myOrders`}>
                         <MyOrders />
-                    </Route>
+                    </Route> */}
                     <Route exact path={`${path}/payment`}>
                         <Payment />
                     </Route>
                     <Route exact path={`${path}/rating`}>
                         <UserRating />
                     </Route>
-                    <Route exact path={`${path}/allOrders`}>
+                    <AdminRoute exact path={`${path}/allOrders`}>
                         <AllOrders />
-                    </Route>
-                    <Route path={`${path}/makeAdmin`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
-                    </Route>
-                    <Route path={`${path}/addNew`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/addNew`}>
                         <NewProduct />
-                    </Route>
-                    <Route path={`${path}/manageProduct`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageProduct`}>
                         <ManageProduct />
-                    </Route>
+                    </AdminRoute>
                     {/* <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </AdminRoute> */}

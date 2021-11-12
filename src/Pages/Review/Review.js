@@ -10,7 +10,7 @@ import { Rating } from '@mui/material';
 const Review = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch("reviews.json")
+        fetch("https://corify.herokuapp.com/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -42,7 +42,7 @@ const Review = () => {
                                                 <h6>{review.name}</h6>
                                                 <Rating
                                                     readOnly
-                                                    value={review.rating}
+                                                    value={parseInt(review.rating)}
                                                 />
                                             </div>
                                             <p className="text-secondary text-end mb-0">................................................................... <FormatQuoteIcon /></p>

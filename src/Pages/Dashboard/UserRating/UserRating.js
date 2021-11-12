@@ -15,28 +15,27 @@ const UserRating = () => {
     const nameRef = useRef()
     const emailRef = useRef()
     const reviewRef = useRef()
-
     // ADD an Destination
     const submitHandler = (e) => {
         e.preventDefault()
         const name = nameRef.current.value
         const email = emailRef.current.value
-        const img = user.photoURL
+        const img = user.photoURL ? user.photoURL : "https://i.ibb.co/6R1QTpL/avatar.png"
         const rating = userRating
         const review = reviewRef.current.value
 
         const newReview = { name, email, img, review, rating }
-        //     axios.post('https://traveezy.herokuapp.com/services', newReview)
-        //         .then(function (res) {
-        //             if (res.data.insertedId) {
-        //                 toast.success("Added Review Successfully")
-        //                 e.target.reset()
-        //                 setTimeout(() => history.push(`/review`), 2000);
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         })
+        axios.post('https://corify.herokuapp.com/reviews', newReview)
+            .then(function (res) {
+                if (res.data.insertedId) {
+                    toast.success("Added Review Successfully")
+                    e.target.reset()
+                    setTimeout(() => history.push(`/review`), 2000);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
     return (
         <div className="container py-5">

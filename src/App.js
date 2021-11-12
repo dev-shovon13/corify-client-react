@@ -56,8 +56,7 @@ function App() {
             <Products />
             <Footer />
           </PrivateRoute>
-          {/* <PrivateRoute exact path="/placeOrder/:id"> */}
-          <PrivateRoute exact path="/placeOrder">
+          <PrivateRoute exact path="/placeOrder/:id">
             <TopBar />
             <Header />
             <PlaceOrder />

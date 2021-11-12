@@ -23,13 +23,13 @@ const useFirebase = () => {
     const twitterProvider = new TwitterAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
 
-
+    // sign up new user 
     const registerUser = (email, password, name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then((result) => {
                 setAuthError('');
-                const newUser = { email, displayName: name };
+                const newUser = { email, displayName: name, uid: result.user.uid };
                 setUser(newUser);
                 // save user to the database
                 saveUser(email, name, 'POST');
@@ -48,6 +48,7 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+    // login existing user
     const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
@@ -76,6 +77,7 @@ const useFirebase = () => {
                 setAuthError(error.message);
             }).finally(() => setIsLoading(false));
     }
+
     // sign in with github 
     const signInWithGithub = (location, history) => {
         setIsLoading(true);
@@ -90,6 +92,7 @@ const useFirebase = () => {
                 setAuthError(error.message);
             }).finally(() => setIsLoading(false));
     }
+
     // sign in with facebook 
     const signInWithFacebook = (location, history) => {
         setIsLoading(true);
@@ -104,6 +107,7 @@ const useFirebase = () => {
                 setAuthError(error.message);
             }).finally(() => setIsLoading(false));
     }
+
     // sign in with twitter 
     const signInWithTwitter = (location, history) => {
         setIsLoading(true);
@@ -136,12 +140,6 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [auth])
 
-    useEffect(() => {
-        fetch(`https://stark-caverns-04377.herokuapp.com/users/${user.email}`)
-            .then(res => res.json())
-            .then(data => setAdmin(data.admin))
-    }, [user.email])
-
     // user logout 
     const logOut = () => {
         setIsLoading(true);
@@ -152,9 +150,15 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+    useEffect(() => {
+        fetch(`https://corify.herokuapp.com/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('https://stark-caverns-04377.herokuapp.com/users', {
+        fetch('https://corify.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'

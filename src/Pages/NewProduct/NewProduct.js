@@ -31,18 +31,17 @@ const NewDestination = () => {
         const run = runRef.current.value
 
         const newProduct = { name, img, type, price, transmission, wheel, run }
-
-        //     axios.post('https://traveezy.herokuapp.com/services', newProduct)
-        //         .then(function (res) {
-        //             if (res.data.insertedId) {
-        //                 toast.success("Added Destination Successfully")
-        //                 e.target.reset()
-        //                 setTimeout(() => history.push(`/services`), 2000);
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         })
+        axios.post('https://corify.herokuapp.com/products', newProduct)
+            .then(function (res) {
+                if (res.data.insertedId) {
+                    toast.success("Added Product Successfully")
+                    e.target.reset()
+                    setTimeout(() => history.push(`/products`), 2000);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     return (
@@ -57,31 +56,31 @@ const NewDestination = () => {
                 <div className="fw-bold">
                     <div className="mb-3">
                         <label className="form-label">Title</label>
-                        <TextField required fullWidth ref={nameRef} size="small" variant="standard" placeholder="Enter Product Title" />
+                        <TextField required fullWidth inputRef={nameRef} size="small" variant="standard" placeholder="Enter Product Title" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Image</label><br />
-                        <TextField required fullWidth ref={imageRef} size="small" variant="standard" placeholder="Please Give Valid Image URL" />
+                        <TextField required fullWidth inputRef={imageRef} size="small" variant="standard" placeholder="Please Give Valid Image URL" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Price</label>
-                        <TextField required fullWidth type="number" ref={priceRef} size="small" variant="standard" placeholder="Enter Product Price" />
+                        <TextField required fullWidth type="number" inputRef={priceRef} size="small" variant="standard" placeholder="Enter Product Price" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Body Type</label>
-                        <TextField required fullWidth ref={typeRef} size="small" variant="standard" placeholder="Enter Product Body Type" />
+                        <TextField required fullWidth inputRef={typeRef} size="small" variant="standard" placeholder="Enter Product Body Type" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Transmission</label>
-                        <TextField required fullWidth ref={transRef} size="small" variant="standard" placeholder="Enter Product Transmission Type" />
+                        <TextField required fullWidth inputRef={transRef} size="small" variant="standard" placeholder="Enter Product Transmission Type" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Wheel Drive</label>
-                        <TextField required fullWidth ref={wheelRef} size="small" variant="standard" placeholder="Enter Product Wheel Drive Type" />
+                        <TextField required fullWidth inputRef={wheelRef} size="small" variant="standard" placeholder="Enter Product Wheel Drive Type" />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Already Run</label>
-                        <TextField required fullWidth type="number" ref={runRef} size="small" variant="standard" placeholder="Enter Product Transmission Type" />
+                        <TextField required fullWidth type="number" inputRef={runRef} size="small" variant="standard" placeholder="Enter Product Transmission Type" />
                     </div>
                 </div>
                 <div className="text-center">

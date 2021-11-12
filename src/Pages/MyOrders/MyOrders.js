@@ -7,12 +7,13 @@ import Swal from 'sweetalert2'
 import { Helmet } from 'react-helmet';
 import ScrollButton from '../../components/ScrollButton/ScrollButton';
 import { Button } from '@mui/material';
+import './MyOrders.css'
 
 const MyOrders = () => {
     const { user } = useAuth()
     const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch("https://traveezy.herokuapp.com/userProducts")
+        fetch("https://corify.herokuapp.com/userProducts")
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
@@ -34,10 +35,10 @@ const MyOrders = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://traveezy.herokuapp.com/userProducts/${id}`)
+                axios.delete(`https://corify.herokuapp.com/userProducts/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
-                            toast.error("Deleted Order Successfully")
+                            toast.success("Deleted Order Successfully")
                             const remainingProducts = products.filter(product => product._id !== id)
                             setProducts(remainingProducts)
                         }
@@ -45,8 +46,6 @@ const MyOrders = () => {
             }
         })
     }
-
-    const test = [1, 2, 3]
 
     return (
         <div >
@@ -59,29 +58,44 @@ const MyOrders = () => {
             <div className="container p-4">
                 <div className="row row-cols-1 row-cols-xl-2 g-4">
                     {
-                        // userProducts.length === 0 ? <h2 className="text-center text-success w-75 mx-auto">You Have No Orders</h2>
-                        //     :
-                        //     userProducts.map(product => {
-                        test.map(product => {
-                            return <div className="col" key={product._id}>
-                                <div className="bg-light shadow-sm radius p-3 d-md-flex service-body">
-                                    <div className="text-center mb-2 mb-lg-0">
-                                        <img src="https://i.ibb.co/0rmLTmq/chevrolet-camaro-zl1-cornering.jpg" alt="" className="img-fluid srv-img radius me-3" />
-                                    </div>
-                                    <div>
-                                        <h5>Name: {product.name}</h5>
-                                        <p className="mb-0"><span className="fw-light">Email: </span> {product.email ? product.email : "Not Available"}</p>
-                                        <p className="mb-0"><span className="fw-light">Product: </span>{product.title}</p>
-                                        <p className="mb-0"><span className="fw-light">Type: </span>{product.type}</p>
-                                        <p className="mb-0"><span className="fw-light">Price: $</span>{product.price}</p>
-                                        <p className="status">{product.status}</p>
-                                        <div className="service-btn">
-                                            <Button variant="contained" size="small" color="error" onClick={() => handleDelete(product._id)}>Cancel</Button>
+                        userProducts.length === 0 ? <h2 className="text-center text-success w-75 mx-auto">You Have No Orders</h2>
+                            :
+                            userProducts.map(product => {
+                                return <div className="col" key={product._id}>
+                                    <div className="bg-light shadow-sm radius p-3 d-md-flex service-body">
+                                        <div className="text-center mb-2 mb-lg-0">
+                                            <img src={product.img} alt="" className="img-fluid srv-img radius me-3" />
+                                        </div>
+                                        <div>
+                                            <h5 className="mb-0">
+                                                <span className="carter-font text-secondary">Name: </span>
+                                                <span className="blue"> {product.name}</span>
+                                            </h5>
+                                            <div className="mb-0">
+                                                <span className="fw-light carter-font text-secondary">Email: </span>
+                                                <span className="blue">{product.email ? product.email : "Not Available"}</span>
+                                            </div>
+                                            <div className="mb-0">
+                                                <span className="fw-light carter-font text-secondary">Product: </span>
+                                                <span className="blue">{product.title}</span>
+                                            </div>
+                                            <div>
+                                                <span className="fw-light carter-font text-secondary">Type: </span>
+                                                <span className="blue">{product.type}</span>
+                                            </div>
+                                            <div className="align-items-center">
+                                                <span className="fw-light carter-font text-secondary">Price: </span>
+                                                <h6 className="d-inline fw-bold text-warning">$</h6>
+                                                <span className="mb-0 text-success fw-bold" >{product.price}</span>
+                                            </div>
+                                            <p className="status">{product.status}</p>
+                                            <div className="service-btn">
+                                                <Button variant="contained" size="small" color="error" onClick={() => handleDelete(product._id)}>Cancel</Button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        })
+                            })
                     }
                 </div>
             </div>
