@@ -19,7 +19,7 @@ const MakeAdmin = () => {
         fetch('https://corify.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
-                // 'authorization': `Bearer ${token}`,
+                'authorization': `Bearer ${token}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)

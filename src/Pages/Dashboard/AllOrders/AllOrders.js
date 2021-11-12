@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 import './AllOrders.css'
 import { Helmet } from 'react-helmet';
-import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import ScrollButton from '../../../components/ScrollButton/ScrollButton';
 import { Button } from '@mui/material';
 
 const AllOrders = () => {

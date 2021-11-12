@@ -27,17 +27,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import useAuth from '../../hooks/useAuth';
-import MyOrders from '../MyOrders/MyOrders';
 import Payment from './Payment/Payment';
-import NewProduct from '../NewProduct/NewProduct'
+import NewProduct from './NewProduct/NewProduct'
 import UserRating from './UserRating/UserRating';
-import AllOrders from '../AllOrders/AllOrders';
 import ManageProduct from './ManageProduct/ManageProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import logo from '../../images/logo.png'
 import userAvatar from '../../images/avatar.png'
 import AdminRoute from '../AdminRoute/AdminRoute';
 import './Dashboard.css'
+import AllOrders from './AllOrders/AllOrders';
+import MyOrders from './MyOrders/MyOrders';
 
 const drawerWidth = 240;
 
@@ -225,18 +225,12 @@ function Dashboard(props) {
                     <Route exact path={path}>
                         {admin ? <AllOrders /> : <MyOrders />}
                     </Route>
-                    {/* <Route exact path={`${path}/myOrders`}>
-                        <MyOrders />
-                    </Route> */}
                     <Route exact path={`${path}/payment`}>
                         <Payment />
                     </Route>
                     <Route exact path={`${path}/rating`}>
                         <UserRating />
                     </Route>
-                    <AdminRoute exact path={`${path}/allOrders`}>
-                        <AllOrders />
-                    </AdminRoute>
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
                     </AdminRoute>
@@ -246,9 +240,6 @@ function Dashboard(props) {
                     <AdminRoute path={`${path}/manageProduct`}>
                         <ManageProduct />
                     </AdminRoute>
-                    {/* <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
-                    </AdminRoute> */}
                 </Switch>
             </Box>
         </Box>
