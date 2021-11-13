@@ -1,11 +1,11 @@
-import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import useAuth from './../../../hooks/useAuth';
 import { Helmet } from 'react-helmet';
+import { Button, TextField } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ScrollButton from '../../../components/ScrollButton/ScrollButton';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import ScrollButton from '../../../components/ScrollButton/ScrollButton';
+import useAuth from './../../../hooks/useAuth';
 import './MakeAdmin.css'
 
 const MakeAdmin = () => {
@@ -16,6 +16,7 @@ const MakeAdmin = () => {
         setEmail(e.target.value);
     }
     const handleAdminSubmit = e => {
+        e.preventDefault()
         const user = { email };
         fetch('https://corify.herokuapp.com/users/admin', {
             method: 'PUT',
@@ -33,8 +34,6 @@ const MakeAdmin = () => {
                     e.target.reset()
                 }
             })
-
-        e.preventDefault()
     }
     return (
         <div className="container py-5">

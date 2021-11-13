@@ -1,16 +1,16 @@
-import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
-import login from '../../images/login.png'
-import google from '../../images/google.png'
-import useAuth from '../../hooks/useAuth';
-import ScrollButton from '../../components/ScrollButton/ScrollButton';
 import { Helmet } from 'react-helmet';
-import './LogIn.css'
-import logo from '../../images/logo.png'
+import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, TextField } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
+import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import useAuth from '../../hooks/useAuth';
+import google from '../../images/google.png'
+import login from '../../images/login.png'
+import logo from '../../images/logo.png'
+import './LogIn.css'
 
 const LogIn = () => {
     const [loginData, setLoginData] = useState({});
@@ -30,7 +30,6 @@ const LogIn = () => {
         loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
-
     const handleGoogleSignIn = () => {
         signInWithGoogle(location, history)
     }

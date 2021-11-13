@@ -1,12 +1,12 @@
-import { Button, Rating, TextField, Typography } from '@mui/material';
-import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Button, Rating, TextField, Typography } from '@mui/material';
 import { useHistory } from 'react-router';
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useAuth from '../../../hooks/useAuth'
 import RateReviewIcon from '@mui/icons-material/RateReview';
+import useAuth from '../../../hooks/useAuth'
 
 const UserRating = () => {
     const [userRating, setUserRating] = useState(0);
@@ -16,7 +16,8 @@ const UserRating = () => {
     const nameRef = useRef()
     const emailRef = useRef()
     const reviewRef = useRef()
-    // ADD an Destination
+
+    // Add a Review
     const submitHandler = (e) => {
         e.preventDefault()
         const name = nameRef.current.value

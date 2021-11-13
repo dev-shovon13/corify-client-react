@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Swal from 'sweetalert2'
-import './AllOrders.css'
-import { Helmet } from 'react-helmet';
-import ScrollButton from '../../../components/ScrollButton/ScrollButton';
 import { Button } from '@mui/material';
+import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2'
+import axios from 'axios';
+import ScrollButton from '../../../components/ScrollButton/ScrollButton';
+import './AllOrders.css'
 
 const AllOrders = () => {
     const [products, setProducts] = useState([])
@@ -50,7 +50,6 @@ const AllOrders = () => {
         const updatedStatus = "Shipped"
         const updatedOrder = { ...userProduct }
         updatedOrder.status = updatedStatus
-
         axios.put(`https://corify.herokuapp.com/userProducts/${id}`, updatedOrder)
             .then(function (res) {
                 if (res.data.modifiedCount > 0) {
@@ -61,7 +60,6 @@ const AllOrders = () => {
                 toast.error(error);
             })
     }
-    // const test = [1, 2, 3, 4, 5, 6, 7]
     return (
         <div>
             <Helmet>

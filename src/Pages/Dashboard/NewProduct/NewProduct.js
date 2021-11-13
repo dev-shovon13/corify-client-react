@@ -1,17 +1,14 @@
-import { Button, TextField } from '@mui/material';
-import axios from 'axios';
 import React, { useRef } from 'react';
+import { Button, TextField } from '@mui/material';
 import { Helmet } from 'react-helmet';
-// import { useHistory } from 'react-router';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ScrollButton from '../../../components/ScrollButton/ScrollButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import ScrollButton from '../../../components/ScrollButton/ScrollButton';
 import './NewProduct.css'
 
 const NewDestination = () => {
-    // const history = useHistory()
-
     const nameRef = useRef()
     const typeRef = useRef()
     const imageRef = useRef()
@@ -37,7 +34,6 @@ const NewDestination = () => {
                 if (res.data.insertedId) {
                     toast.success("Added Product Successfully")
                     e.target.reset()
-                    // setTimeout(() => history.push(`/products`), 2000);
                 }
             })
             .catch(function (error) {

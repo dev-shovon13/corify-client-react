@@ -32,7 +32,7 @@
     transition: all 0.5s;
 }
 .product-img-order{
-height: 250px;
+    height: 250px;
 }
 .product-img:hover{
     opacity: 0.8;
@@ -53,7 +53,7 @@ height: 250px;
 
 @media (max-width:668px){
     .car-card{
-    width: 80%;
+    width: 90%;
     margin: auto;
     }
     .car-card-order{

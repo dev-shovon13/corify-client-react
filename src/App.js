@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import AdminRoute from "./Pages/AdminRoute/AdminRoute";
 import TopBar from './Pages/Header/TopBar/TopBar';
 import Header from './Pages/Header/Header';
 import Home from './Pages/Home/Home';
@@ -18,7 +19,6 @@ import NotFound from './Pages/NotFound/NotFound'
 import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import UpdateProduct from "./Pages/Dashboard/ManageProduct/UpdateProduct";
-import AdminRoute from "./Pages/AdminRoute/AdminRoute";
 
 function App() {
   return (

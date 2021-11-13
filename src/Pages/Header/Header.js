@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import userAvatar from '../../images/avatar.png'
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Button } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
-import './Header.css'
 import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
+import userAvatar from '../../images/avatar.png'
+import './Header.css'
 
 const Header = () => {
     const { user, admin, logOut } = useAuth();

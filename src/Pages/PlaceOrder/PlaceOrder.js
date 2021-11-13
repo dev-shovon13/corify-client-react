@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { useHistory, useParams } from 'react-router';
-import useAuth from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import SpeedIcon from '@mui/icons-material/Speed';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import useAuth from '../../hooks/useAuth';
 
 
 const PlaceOrder = () => {
     const { user } = useAuth()
-    const history = useHistory()
     const { id } = useParams()
+    const history = useHistory()
     const [product, setProduct] = useState({})
     useEffect(() => {
         fetch(`https://corify.herokuapp.com/products/${id}`)
@@ -41,7 +41,6 @@ const PlaceOrder = () => {
         const type = product.type
         const price = product.price
         const status = "Pending"
-
         const newProduct = { currentUser, name, email, address, number, title, img, type, price, status }
 
         axios.post('https://corify.herokuapp.com/userProducts', newProduct)
@@ -49,7 +48,6 @@ const PlaceOrder = () => {
                 if (res.data.insertedId) {
                     toast.success("Placed Order Successfully")
                     e.target.reset()
-                    // setUserEvent({})
                     setTimeout(() => history.push(`/products`), 2000);
                 }
             })

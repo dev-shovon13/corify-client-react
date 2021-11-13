@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NavLink, useLocation, useHistory } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import ScrollButton from '../../components/ScrollButton/ScrollButton';
-import { Helmet } from 'react-helmet';
-import signup from '../../images/signup.png'
-import google from '../../images/google.png'
-import './SignUp.css'
-import logo from '../../images/logo.png'
 import { Button, Checkbox, TextField } from '@mui/material';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from '../../images/logo.png'
+import google from '../../images/google.png'
+import signup from '../../images/signup.png'
+import useAuth from '../../hooks/useAuth';
+import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import './SignUp.css'
 
 const SignUp = () => {
     const [loginData, setLoginData] = useState({});

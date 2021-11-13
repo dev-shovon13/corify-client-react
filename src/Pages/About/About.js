@@ -1,10 +1,10 @@
 import React from 'react';
-import ScrollButton from '../../components/ScrollButton/ScrollButton';
 import { Helmet } from 'react-helmet';
-import './About.css'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import './About.css'
 
 const About = () => {
     return (

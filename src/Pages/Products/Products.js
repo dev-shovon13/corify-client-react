@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ScrollButton from '../../components/ScrollButton/ScrollButton';
-import Product from './Product/Product';
 import { Helmet } from 'react-helmet';
-import './Products.css'
 import { Pagination } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { blue } from '@mui/material/colors';
 import { ThemeProvider } from '@emotion/react';
+import { blue } from '@mui/material/colors';
+import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import Product from './Product/Product';
+import './Products.css'
 
 const theme = createTheme({
     palette: {
@@ -18,7 +18,6 @@ const theme = createTheme({
         },
     },
 });
-
 
 const Products = () => {
     const [products, setProducts] = useState([])

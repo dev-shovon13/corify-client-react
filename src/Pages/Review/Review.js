@@ -1,11 +1,9 @@
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import React, { useEffect, useState } from 'react';
-import ScrollButton from '../../components/ScrollButton/ScrollButton';
 import { Helmet } from 'react-helmet';
-// import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-import './Review.css'
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import { Rating } from '@mui/material';
+import ScrollButton from '../../components/ScrollButton/ScrollButton';
+import './Review.css'
 
 const Review = () => {
     const [reviews, setReviews] = useState([])
@@ -21,13 +19,11 @@ const Review = () => {
                 <title>Review | Corify</title>
                 <meta name="This is the review page of Corify" content="Corify- Car Dealer Website" />
             </Helmet>
-
             <div className="container pb-5 pt-3">
                 <div className=" py-3 text-center text-md-start">
                     <h5 className="color">TESTIMONIAL</h5>
                     <h1 className="service-txt w-50 mx-auto mx-md-0 review-txt">What Our Happy Clients Say</h1>
                 </div>
-
                 <div className="mb-5 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {
                         reviews.map(review => {

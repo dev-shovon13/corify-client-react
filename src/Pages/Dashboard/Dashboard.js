@@ -32,13 +32,13 @@ import NewProduct from './NewProduct/NewProduct'
 import UserRating from './UserRating/UserRating';
 import ManageProduct from './ManageProduct/ManageProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
-import logo from '../../images/logo.png'
-import userAvatar from '../../images/avatar.png'
 import AdminRoute from '../AdminRoute/AdminRoute';
-import './Dashboard.css'
 import AllOrders from './AllOrders/AllOrders';
 import MyOrders from './MyOrders/MyOrders';
 // import UpdateProduct from './ManageProduct/UpdateProduct';
+import logo from '../../images/logo.png'
+import userAvatar from '../../images/avatar.png'
+import './Dashboard.css'
 
 const scrollToTop = () => {
     window.scrollTo({

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import img from '../../images/404.png'
 import { Helmet } from 'react-helmet';
+import img from '../../images/404.png'
 import './NotFound.css'
 
 const NotFound = () => {

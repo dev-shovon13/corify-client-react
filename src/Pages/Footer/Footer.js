@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faHome, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube, faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import './Footer.css'
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png'
 import { Button } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import logo from '../../images/logo.png'
+import './Footer.css'
 
 // this is the footer page
 const Footer = () => {
