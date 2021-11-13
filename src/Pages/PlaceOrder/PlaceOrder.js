@@ -9,6 +9,7 @@ import MapIcon from '@mui/icons-material/Map';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, TextField } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 
 const PlaceOrder = () => {
@@ -42,7 +43,6 @@ const PlaceOrder = () => {
         const status = "Pending"
 
         const newProduct = { currentUser, name, email, address, number, title, img, type, price, status }
-        console.log(newProduct);
 
         axios.post('https://corify.herokuapp.com/userProducts', newProduct)
             .then(function (res) {
@@ -86,21 +86,23 @@ const PlaceOrder = () => {
                     </div>
                 </div>
                 <div className="col">
-                    <h5 className="text-center text-success border-bottom pb-2 mb-3">Customer Details</h5>
+                    <h5 className="text-center theme border-bottom py-2 mb-3 rounded bg-light">Customer Details</h5>
                     <form action="" onSubmit={submitHandler}>
                         <div className="mb-4">
-                            <TextField className="w-100" size="small" label="Name" variant="outlined" value={user.displayName || user.email.substring(0, user.email.lastIndexOf("@")) || ""} inputRef={nameRef} />
+                            <TextField fullWidth size="small" label="Name" variant="outlined" value={user.displayName || user.email.substring(0, user.email.lastIndexOf("@")) || ""} inputRef={nameRef} />
                         </div>
                         <div className="mb-4">
-                            <TextField required className="w-100" size="small" label="Email" variant="outlined" placeholder="Email" value={user.email} inputRef={emailRef} />
+                            <TextField required fullWidth size="small" label="Email" variant="outlined" placeholder="Email" value={user.email} inputRef={emailRef} />
                         </div>
                         <div className="mb-4">
-                            <TextField className="w-100" size="small" label="Phone Number" variant="outlined" placeholder="Phone Number" inputRef={numberRef} />
+                            <TextField fullWidth size="small" label="Phone Number" variant="outlined" placeholder="Phone Number" inputRef={numberRef} />
                         </div>
                         <div className="mb-4">
-                            <TextField className="w-100" size="small" label="Address" variant="outlined" placeholder="Address" inputRef={addressRef} />
+                            <TextField fullWidth size="small" label="Address" variant="outlined" placeholder="Address" inputRef={addressRef} />
                         </div>
-                        <Button className="w-100" variant="contained" type='submit'>Confirm Order</Button>
+                        <Button fullWidth variant="contained" type='submit' className="banner-btn drive text-white">
+                            <AddShoppingCartIcon className="me-2" />Confirm Order
+                        </Button>
                     </form>
                 </div>
             </div>

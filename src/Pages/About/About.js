@@ -18,25 +18,25 @@ const About = () => {
                     <div className="row row-cols-1 row-cols-md-2 g-4 pt-5">
                         <div className="col p-4 pt-0">
                             <p className="text-uppercase ash">CORIFY AUTO CENTER</p>
-                            <h1 className="w-75 about-info blue mb-5">EXCELLENT CAR DEALERSHIP</h1>
+                            <h1 className="w-75 about-info blue mb-3">EXCELLENT CAR DEALERSHIP</h1>
                             <h5 className="color">Corify is a leading two-sided digital automotive dealership that connects car shoppers with sellers. Launched in 1998 and headquartered in Chicago, the company empowers shoppers with the data, resources and digital tools needed to make informed buying decisions and seamlessly connect with automotive retailers.</h5>
                         </div>
                         <div className="col ps-5 p-4 pt-0">
                             <div className="row row-cols-2 g-4 abt-center">
                                 <div className="col">
-                                    <h1 className="price theme">900 <sup>+</sup></h1>
+                                    <h1 className="abt-large">900 <sup>+</sup></h1>
                                     <h6 className="blue fw-bold w-75 abt-why">VEHICLES AVAILABLE RIGHT NOW</h6>
                                 </div>
                                 <div className="col">
-                                    <h1 className="price theme">250 <sup>+</sup></h1>
+                                    <h1 className="abt-large">250 <sup>+</sup></h1>
                                     <h6 className="blue fw-bold w-75 abt-why">HAPPY & TRUSTED CUSTOMERS</h6>
                                 </div>
                                 <div className="col">
-                                    <h1 className="price theme">125</h1>
+                                    <h1 className="abt-large">125</h1>
                                     <h6 className="blue fw-bold w-75 abt-why">CAR MAKES AND MODELS</h6>
                                 </div>
                                 <div className="col">
-                                    <h1 className="price theme">68</h1>
+                                    <h1 className="abt-large">68</h1>
                                     <h6 className="blue fw-bold w-75 abt-why">RECOGNITION AND AWARDS</h6>
                                 </div>
                             </div>

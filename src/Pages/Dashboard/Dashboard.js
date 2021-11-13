@@ -170,9 +170,9 @@ function Dashboard(props) {
                                         :
                                         <img src={userAvatar} alt="" style={{ height: '35px', borderRadius: '50%' }} className="me-2" />}
                                     {user.displayName ?
-                                        <span className="fw-bold text-dark">{user.displayName}</span>
+                                        <span className="fw-bold text-dark">{user.displayName}{admin && <sup><img src="https://i.ibb.co/B66RmKf/Admin.jpg" width="10px" alt="" /></sup>}</span>
                                         :
-                                        <span className="fw-bold text-dark">{user.email.substring(0, user.email.lastIndexOf("@"))}</span>}
+                                        <span className="fw-bold text-dark">{user.email.substring(0, user.email.lastIndexOf("@"))}{admin && <sup><img src="https://i.ibb.co/B66RmKf/Admin.jpg" width="10px" alt="" /></sup>}</span>}
                                     <Button onClick={logOut} variant="contained" size="small" className="banner-btn text-capitalize ms-2 text-white bg-danger rounded-0">
                                         <LoginIcon /><span className="ms-2">Logout</span>
                                     </Button>

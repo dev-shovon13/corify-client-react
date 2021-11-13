@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../../hooks/useAuth'
+import RateReviewIcon from '@mui/icons-material/RateReview';
 
 const UserRating = () => {
     const [userRating, setUserRating] = useState(0);
@@ -65,7 +66,9 @@ const UserRating = () => {
                 <div className="mb-4">
                     <TextField required fullWidth multiline rows={3} size="small" label="Review" variant="outlined" placeholder="Review" inputRef={reviewRef} />
                 </div>
-                <Button fullWidth variant="contained" type='submit'>Submit</Button>
+                <Button fullWidth type="submit" variant="contained" className="banner-btn drive text-white">
+                    <RateReviewIcon className="me-2" /> Submit
+                </Button>
             </form>
         </div>
     );

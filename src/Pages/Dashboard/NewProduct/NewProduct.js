@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollButton from '../../../components/ScrollButton/ScrollButton';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import './NewProduct.css'
 
 const NewDestination = () => {
@@ -90,7 +91,9 @@ const NewDestination = () => {
                     </div>
                 </div>
                 <div className="text-center w-50 mx-auto addnew mt-4">
-                    <Button type="submit" fullWidth variant="contained">Add New Product</Button>
+                    <Button type="submit" fullWidth variant="contained" size="medium" className="banner-btn drive text-white">
+                        <AddBoxIcon className="me-2" /> Add New Product
+                    </Button>
                 </div>
             </form>
         </div>

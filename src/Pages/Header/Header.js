@@ -10,7 +10,7 @@ import './Header.css'
 import Swal from 'sweetalert2';
 
 const Header = () => {
-    const { user, logOut } = useAuth();
+    const { user, admin, logOut } = useAuth();
     const notify = () => {
         if (!user.uid) {
             Swal.fire({
@@ -36,7 +36,7 @@ const Header = () => {
                                 <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/about">About</NavLink>
                             </li>
                             <li className="nav-item me-3">
-                                <NavLink onClick={notify} className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/products">Products</NavLink>
+                                <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/products">Products</NavLink>
                             </li>
                             <li className="nav-item me-3">
                                 <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/review">Review</NavLink>
@@ -51,9 +51,9 @@ const Header = () => {
                                             :
                                             <img src={userAvatar} alt="" style={{ height: '35px', borderRadius: '50%' }} className="me-2" />}
                                         {user.displayName ?
-                                            <span className="fw-bold text-dark">{user.displayName}</span>
+                                            <span className="fw-bold text-dark">{user.displayName}{admin && <sup><img src="https://i.ibb.co/B66RmKf/Admin.jpg" width="10px" alt="" /></sup>}</span>
                                             :
-                                            <span className="fw-bold text-dark">{user.email.substring(0, user.email.lastIndexOf("@"))}</span>}
+                                            <span className="fw-bold text-dark">{user.email.substring(0, user.email.lastIndexOf("@"))}{admin && <sup><img src="https://i.ibb.co/B66RmKf/Admin.jpg" width="10px" alt="" /></sup>}</span>}
                                         <div className="d-flex align-items-center">
                                             <li className="nav-item">
                                                 <NavLink onClick={notify} className="nav-link" activeStyle={{ color: "#F91944", fontWeight: "bold" }} to="/dashboard">

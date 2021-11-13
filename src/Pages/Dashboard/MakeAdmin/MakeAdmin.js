@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollButton from '../../../components/ScrollButton/ScrollButton';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import './MakeAdmin.css'
 
 const MakeAdmin = () => {
@@ -43,7 +44,7 @@ const MakeAdmin = () => {
                 <meta name="This is the Make Admin page of Corify" content="Corify- Car Dealer Website" />
             </Helmet>
             <ToastContainer theme="colored" />
-            <h4 className="text-center border py-2 w-25 admin-title mx-auto bg-light">Make New Admin</h4>
+            <h4 className="text-center border py-2 w-25 admin-title mx-auto bg-light shadow-sm">Make New Admin</h4>
             <form onSubmit={handleAdminSubmit} className="addnew w-50 mx-auto">
                 <TextField
                     fullWidth
@@ -54,7 +55,9 @@ const MakeAdmin = () => {
                     className="mb-3 mt-5"
                 />
                 <div className="text-center">
-                    <Button type="submit" variant="contained">Make Admin</Button>
+                    <Button type="submit" variant="contained" className="banner-btn drive text-white">
+                        <AdminPanelSettingsIcon className="me-2" /> Make Admin
+                    </Button>
                 </div>
             </form>
         </div>

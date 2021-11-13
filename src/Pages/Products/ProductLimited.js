@@ -15,6 +15,7 @@ const ProductLimited = () => {
     }, [])
     const size = 6
     const items = products.slice(0, size)
+
     return (
         <div className="pb-5">
             <Helmet>

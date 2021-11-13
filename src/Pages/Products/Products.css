@@ -56,7 +56,13 @@ height: 250px;
     width: 80%;
     margin: auto;
     }
-
+    .car-card-order{
+        width: 90% !important;
+    }
 }
-@media (max-width:992px){
+
+@media  (min-width:668px) and (max-width:992px){
+    .car-card-order{
+        width: 100% !important;
+    }
 }

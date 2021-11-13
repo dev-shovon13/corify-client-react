@@ -50,12 +50,12 @@ function App() {
             <About />
             <Footer />
           </Route>
-          <PrivateRoute exact path="/products">
+          <Route exact path="/products">
             <TopBar />
             <Header />
             <Products />
             <Footer />
-          </PrivateRoute>
+          </Route>
           <PrivateRoute exact path="/placeOrder/:id">
             <TopBar />
             <Header />

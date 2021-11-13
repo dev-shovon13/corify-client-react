@@ -67,16 +67,16 @@ const ManageProduct = () => {
                                         </div>
                                         <div className="col-md-8 col-lg-9 px-4 px-lg-0 py-2 py-lg-0 row">
                                             <div className="col-lg-6 col-12">
-                                                <h5 className="text-start car-name blue">{product.name}</h5>
-                                                <p className="text-start text-secondary mb-0">{product.type}</p>
+                                                <h5 className="text-start car-name blue text-capitalize">{product.name}</h5>
+                                                <p className="text-start text-secondary mb-0 text-capitalize">{product.type}</p>
                                                 <h4 className="text-start product-txt mt-2">$ {product.price}</h4>
                                             </div>
                                             <div className="col-lg-3 col-12 d-flex d-lg-block justify-content-between">
                                                 <div className="d-flex mb-2">
-                                                    <span className="fw-light"><SpeedIcon /> {product.transmission}</span>
+                                                    <span className="fw-light text-capitalize"><SpeedIcon /> {product.transmission}</span>
                                                 </div>
                                                 <div className="d-flex mb-2">
-                                                    <span className="fw-light"><SettingsIcon /> {product.wheel}</span>
+                                                    <span className="fw-light text-uppercase"><SettingsIcon /> {product.wheel}</span>
                                                 </div>
                                                 <div className="d-flex">
                                                     <span className="fw-light"><MapIcon /> {product.run} KM</span>

@@ -1,4 +1,5 @@
 # Corify - Automotive Center
+This is a Car Dealer Website. Corify sells different kinds of cars.
 
 ## Project Live Link: [Corify](https://corify.netlify.app/home)
 

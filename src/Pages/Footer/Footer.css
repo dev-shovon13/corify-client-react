@@ -45,4 +45,5 @@ color: #F70000;
 .q-link:hover{
     color: #CE8339 !important;
     font-weight: bold;
+    cursor: pointer;
 }

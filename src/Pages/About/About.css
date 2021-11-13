@@ -17,6 +17,11 @@
     font-weight: 800;
     font-size: 40px !important;
 }
+.abt-large{
+    font-size: 60px;
+    font-family: 'Carter One', cursive;
+    color: #CE8339
+}
 .ash{
     color: rgb(80, 80, 80);
     font-size: 20px;
@@ -36,6 +41,11 @@
     font-size: 50px !important;
     color: rgb(209, 209, 209);
 }
+@media (max-width:576px) {
+    .about-info{
+    font-size: 30px !important;
+}
+}
 @media (max-width:668px) {
     .abt-why{
         width: 100% !important;
@@ -44,6 +54,10 @@
     }
     .abt-center{
         text-align: center;
+    }   
+}
+@media (max-width:992px) {
+    .abt-large{
+        font-size: 45px !important;
     }
-    
 }

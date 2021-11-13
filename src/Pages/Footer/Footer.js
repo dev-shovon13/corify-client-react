@@ -31,10 +31,10 @@ const Footer = () => {
                     </div>
                     <div className="col-1 col-md-2 col-lg-2 mb-3 mb-md-0">
                         <h5>Help Center</h5>
-                        <p className="mb-2">FAQs</p>
-                        <p className="mb-2">Pricing & Plan</p>
-                        <p className="mb-2">Terms & Conditions</p>
-                        <p className="mb-2">Privacy Policy</p>
+                        <p className="mb-2 q-link">FAQs</p>
+                        <p className="mb-2 q-link">Pricing & Plan</p>
+                        <p className="mb-2 q-link">Terms & Conditions</p>
+                        <p className="mb-2 q-link">Privacy Policy</p>
                     </div>
                     <div className="col-1 col-md-2 col-lg-2">
                         <h5>Quick Links</h5>
@@ -44,8 +44,8 @@ const Footer = () => {
                         <Link to="/about" className="text-decoration-none text-secondary q-link d-block">
                             About
                         </Link>
-                        <Link to="/services" className="text-decoration-none text-secondary q-link d-block">
-                            Services
+                        <Link to="/products" className="text-decoration-none text-secondary q-link d-block">
+                            Products
                         </Link>
                         <Link to="/review" className="text-decoration-none text-secondary q-link d-block">
                             Reviews
