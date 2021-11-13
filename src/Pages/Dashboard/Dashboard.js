@@ -35,9 +35,10 @@ import MakeAdmin from './MakeAdmin/MakeAdmin';
 import logo from '../../images/logo.png'
 import userAvatar from '../../images/avatar.png'
 import AdminRoute from '../AdminRoute/AdminRoute';
+import './Dashboard.css'
 import AllOrders from './AllOrders/AllOrders';
 import MyOrders from './MyOrders/MyOrders';
-import './Dashboard.css'
+// import UpdateProduct from './ManageProduct/UpdateProduct';
 
 const scrollToTop = () => {
     window.scrollTo({
@@ -128,6 +129,14 @@ function Dashboard(props) {
                             <ListItemText primary="Manage Products" />
                         </ListItem>
                     </Link>
+                    {/* <Link to={`${url}/updateProduct/:id`} className="text-decoration-none text-secondary">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <EditIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Update Products" />
+                        </ListItem>
+                    </Link> */}
                 </List>
             }
 
@@ -246,6 +255,9 @@ function Dashboard(props) {
                     <AdminRoute path={`${path}/manageProduct`}>
                         <ManageProduct />
                     </AdminRoute>
+                    {/* <AdminRoute path={`${path}/updateProduct/:id`}>
+                        <UpdateProduct />
+                    </AdminRoute> */}
                 </Switch>
             </Box>
         </Box>
