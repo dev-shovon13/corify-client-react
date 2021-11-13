@@ -62,9 +62,9 @@ const MyOrders = () => {
                             :
                             userProducts.map(product => {
                                 return <div className="col" key={product._id}>
-                                    <div className="bg-light shadow-sm radius p-3 d-md-flex service-body">
+                                    <div className="bg-light shadow-sm radius py-3 px-2 d-md-flex service-body align-items-center">
                                         <div className="text-center mb-2 mb-lg-0">
-                                            <img src={product.img} alt="" className="img-fluid srv-img radius me-3" />
+                                            <img src={product.img} alt="" className="img-fluid srv-img radius me-2" />
                                         </div>
                                         <div>
                                             <h5 className="mb-0">

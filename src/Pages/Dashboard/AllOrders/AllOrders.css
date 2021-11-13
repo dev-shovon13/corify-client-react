@@ -2,8 +2,8 @@
     background-color: rgb(231, 231, 231);
 }
 .srv-img{
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 140px;
 }
 .radius{
     border-radius: 10px;
@@ -27,6 +27,7 @@
 }
 @media (max-width: 668px) {
     .srv-img{
+        height: 130px;
         width: 200px;
     }
 }
