@@ -3,14 +3,47 @@ import ScrollButton from '../../components/ScrollButton/ScrollButton';
 import Product from './Product/Product';
 import { Helmet } from 'react-helmet';
 import './Products.css'
+import { Pagination } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
+import { ThemeProvider } from '@emotion/react';
+
+const theme = createTheme({
+    palette: {
+        palette: {
+            primary: blue,
+            secondary: {
+                main: '#ffab40',
+            },
+        },
+    },
+});
+
 
 const Products = () => {
     const [products, setProducts] = useState([])
+    const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(1)
+    const size = 12;
+    const handleChange = (event, value) => {
+        setPage(value);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     useEffect(() => {
-        fetch("https://corify.herokuapp.com/products")
+        fetch(`https://corify.herokuapp.com/products?page=${page}&&size=${size}`)
             .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+            .then(data => {
+                setProducts(data.products)
+                const count = data.count
+                const totalPage = Math.ceil(count / size)
+                setPageCount(totalPage)
+            })
+    }, [page])
+
     return (
         <div className="pb-5">
             <Helmet>
@@ -32,6 +65,11 @@ const Products = () => {
                     {
                         products.map(product => <Product key={product._id} product={product} />)
                     }
+                </div>
+                <div className="mt-5 d-flex align-items-center justify-content-center">
+                    <ThemeProvider theme={theme}>
+                        <Pagination count={pageCount} page={page} onChange={handleChange} shape="rounded" color="primary" />
+                    </ThemeProvider>
                 </div>
             </div>
             <ScrollButton />

@@ -11,7 +11,7 @@ const ProductLimited = () => {
     useEffect(() => {
         fetch("https://corify.herokuapp.com/products")
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data => setProducts(data.products))
     }, [])
     const size = 6
     const items = products.slice(0, size)
