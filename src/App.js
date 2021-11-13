@@ -17,6 +17,8 @@ import Footer from './Pages/Footer/Footer';
 import NotFound from './Pages/NotFound/NotFound'
 import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import UpdateProduct from "./Pages/Dashboard/ManageProduct/UpdateProduct";
+import AdminRoute from "./Pages/AdminRoute/AdminRoute";
 
 function App() {
   return (
@@ -56,6 +58,10 @@ function App() {
             <Products />
             <Footer />
           </Route>
+          <AdminRoute exact path="/updateProduct/:id">
+            <Header />
+            <UpdateProduct />
+          </AdminRoute>
           <PrivateRoute exact path="/placeOrder/:id">
             <TopBar />
             <Header />

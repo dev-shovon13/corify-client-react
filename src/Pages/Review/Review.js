@@ -28,7 +28,7 @@ const Review = () => {
                     <h1 className="service-txt w-50 mx-auto mx-md-0 review-txt">What Our Happy Clients Say</h1>
                 </div>
 
-                <div className="my-5 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div className="mb-5 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {
                         reviews.map(review => {
                             return <div key={review.review} className="col">

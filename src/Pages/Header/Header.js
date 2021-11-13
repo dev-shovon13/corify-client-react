@@ -20,6 +20,12 @@ const Header = () => {
             })
         }
     }
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
@@ -30,16 +36,16 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item me-3">
-                                <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/home">Home</NavLink>
+                                <NavLink onClick={scrollToTop} className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/home">Home</NavLink>
                             </li>
                             <li className="nav-item me-3">
-                                <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/about">About</NavLink>
+                                <NavLink onClick={scrollToTop} className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/about">About</NavLink>
                             </li>
                             <li className="nav-item me-3">
-                                <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/products">Products</NavLink>
+                                <NavLink onClick={scrollToTop} className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/products">Products</NavLink>
                             </li>
                             <li className="nav-item me-3">
-                                <NavLink className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/review">Review</NavLink>
+                                <NavLink onClick={scrollToTop} className="text-decoration-none" activeStyle={{ color: "#CE8339", fontWeight: "bold" }} to="/review">Review</NavLink>
                             </li>
                         </ul>
                         <ul className="navbar-nav mb-2 mb-lg-0">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import ScrollButton from '../../../components/ScrollButton/ScrollButton';
-
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,16 +9,19 @@ import { Button } from '@mui/material';
 import SpeedIcon from '@mui/icons-material/Speed';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
+import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../../Products/Products.css'
 import './ManageProduct.css'
+import { Link } from 'react-router-dom';
 
 const ManageProduct = () => {
     const [products, setProducts] = useState([])
+
     useEffect(() => {
         fetch("https://corify.herokuapp.com/products")
             .then(res => res.json())
-            .then(data => setProducts(data))
+            .then(data => setProducts(data.products))
     }, [])
 
     // delete a product
@@ -83,15 +85,27 @@ const ManageProduct = () => {
                                                 </div>
                                             </div>
                                             <div className="col-lg-3 col-12 d-flex justify-content-center align-items-center">
-                                                <Button onClick={() => handleDelete(product._id)} variant="contained" size="small" className="banner-btn text-capitalize text-white bg-danger rounded-0">
-                                                    <DeleteIcon className="me-2" />DELETE
-                                                </Button>
+                                                <div>
+                                                    <Link to={`/updateProduct/${product._id}`} >
+                                                        <Button variant="contained" size="small" className="banner-btn text-capitalize text-white edit rounded-0 width my-1">
+                                                            <div className="row">
+                                                                <span className="col-3"><EditIcon /></span>
+                                                                <span className="text-start col-9">EDIT</span>
+                                                            </div>
+                                                        </Button>
+                                                    </Link>
+                                                    <Button onClick={() => handleDelete(product._id)} variant="contained" size="small" className="banner-btn text-capitalize text-white bg-danger rounded-0 width my-1">
+                                                        <div className="row">
+                                                            <span className="col-3"><DeleteIcon /></span>
+                                                            <span className="text-start col-9">DELETE</span>
+                                                        </div>
+                                                    </Button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         })
                     }
                 </div>

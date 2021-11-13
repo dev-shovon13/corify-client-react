@@ -4,12 +4,17 @@ import { faClock, faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg
 import { NavLink } from 'react-router-dom';
 import logo from '../../../images/logo.png'
 
-
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 const TopBar = () => {
     return (
         <div className="top-bar bg-white py-3 mb-0 border-bottom">
             <div className="container d-flex justify-content-between align-items-center">
-                <NavLink to="/home">
+                <NavLink to="/home" onClick={scrollToTop}>
                     <img
                         src={logo}
                         width="150"

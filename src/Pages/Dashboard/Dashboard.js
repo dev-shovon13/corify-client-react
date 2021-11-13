@@ -35,10 +35,16 @@ import MakeAdmin from './MakeAdmin/MakeAdmin';
 import logo from '../../images/logo.png'
 import userAvatar from '../../images/avatar.png'
 import AdminRoute from '../AdminRoute/AdminRoute';
-import './Dashboard.css'
 import AllOrders from './AllOrders/AllOrders';
 import MyOrders from './MyOrders/MyOrders';
+import './Dashboard.css'
 
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -52,7 +58,7 @@ function Dashboard(props) {
 
     const drawer = (
         <div >
-            <Link to="/home">
+            <Link to="/home" onClick={scrollToTop}>
                 <Toolbar >
                     <img src={logo} height="40" width="130" alt="" />
                 </Toolbar>

@@ -56,7 +56,7 @@ const Footer = () => {
                         <p className="mb-2">Subscribe to our newsletter to get the latest cars discount and promotions</p>
                         <div className="d-flex align-items-center">
                             <input type="text" className="form-control rounded-0 py-2 pe-5 me-1" placeholder="Enter Your Email" />
-                            <Button variant="contained" size="large" className="rounded-0 px-0">
+                            <Button variant="contained" size="large" className="drive rounded-0 px-0">
                                 <ArrowForwardIosIcon />
                             </Button>
                         </div>

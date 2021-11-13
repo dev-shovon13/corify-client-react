@@ -15,6 +15,12 @@ const ProductLimited = () => {
     }, [])
     const size = 6
     const items = products.slice(0, size)
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <div className="pb-5">
@@ -40,7 +46,7 @@ const ProductLimited = () => {
                 </div>
                 <div className="py-5 text-center">
                     <Link to="/products">
-                        <Button variant="contained" size="large" className="banner-btn drive me-2 text-white fw-bold rounded-0">
+                        <Button onClick={scrollToTop} variant="contained" size="large" className="banner-btn drive me-2 text-white fw-bold rounded-0">
                             See All Cars
                         </Button>
                     </Link>

@@ -14,7 +14,6 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const SignUp = () => {
     const [loginData, setLoginData] = useState({});
     const [checked, setChecked] = useState(false);
@@ -95,7 +94,9 @@ const SignUp = () => {
                                     />
                                     <label className="form-check-label text-secondary">I accept the <NavLink to="/signup" className="text-decoration-none text-info">Terms of Use</NavLink> & <NavLink to="/signup" className="text-decoration-none text-info">Privacy Policy</NavLink></label>
                                 </div>
-                                <Button fullWidth variant="contained" type='submit'><FingerprintIcon className="me-2" />Sign Up</Button>
+                                <Button type="submit" fullWidth variant="contained" size="medium" className="banner-btn drive text-white">
+                                    <FingerprintIcon className="me-2" />Sign Up
+                                </Button>
                                 <div className="text-danger fw-bold fs-6">{authError}</div>
                             </form>
                             <div className="border-top mt-2">

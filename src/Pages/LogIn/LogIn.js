@@ -66,7 +66,9 @@ const LogIn = () => {
                                 <div className="mb-3 text-start">
                                     <NavLink to="/login" className="text-decoration-none text-info">Forgot Password ?</NavLink>
                                 </div>
-                                <Button fullWidth variant="contained" type='submit'><LoginIcon className="me-2" />Log In</Button>
+                                <Button type="submit" fullWidth variant="contained" size="medium" className="banner-btn drive text-white">
+                                    <LoginIcon className="me-2" />Log In
+                                </Button>
                                 <div className="text-danger fw-bold fs-6">{authError}</div>
                             </form>
                             <div className="border-top mt-2">
