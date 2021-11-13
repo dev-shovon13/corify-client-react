@@ -65,7 +65,7 @@ const NewDestination = () => {
                             <TextField required fullWidth inputRef={typeRef} size="small" variant="standard" placeholder="Enter Product Body Type" />
                         </div>
                     </div>
-                    <div className="col-12 col-lg-5">
+                    <div className="col-12 col-lg-6">
                         <div className="mb-3">
                             <label className="form-label">Transmission</label>
                             <TextField required fullWidth inputRef={transRef} size="small" variant="standard" placeholder="Enter Product Transmission Type" />
