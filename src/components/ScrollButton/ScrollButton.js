@@ -28,7 +28,7 @@ const ScrollButton = () => {
 
     return (
         <div className="scroll-btn">
-            <FontAwesomeIcon icon={faArrowUp} className="bg-secondary opacity rounded text-white p-2" onClick={scrollToTop} style={{ display: visible ? 'inline' : 'none' }} />
+            <FontAwesomeIcon icon={faArrowUp} className="opacity rounded text-white p-2" onClick={scrollToTop} style={{ display: visible ? 'inline' : 'none' }} />
         </div>
     );
 }

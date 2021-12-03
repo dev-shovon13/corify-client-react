@@ -42,11 +42,15 @@ const Service = (props) => {
                         <span className="fw-light text-capitalize d-flex flex-column d-sm-block justify-content-center"><span><MapIcon /></span> <span>{run} KM</span></span>
                     </div>
                 </div>
-                <Link to={"/placeOrder/" + _id} className="buy-btn">
-                    <Button onClick={notify} variant="contained" size="small" className="banner-btn drive me-2 text-white fw-bold rounded-0">
-                        <AddShoppingCartIcon />Buy Now
-                    </Button>
-                </Link>
+                <div className="middle">
+                    <Link to={"/placeOrder/" + _id} className="buy-btn">
+                        <div className="buy-nw">
+                            <Button onClick={notify} variant="contained" size="small" className="banner-btn drive me-2 text-white fw-bold rounded-0">
+                                <AddShoppingCartIcon />Buy Now
+                            </Button>
+                        </div>
+                    </Link>
+                </div>
             </div>
         </div>
     )

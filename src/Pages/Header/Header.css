@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+.quick{
+    font-family: 'Quicksand', sans-serif;
+}
+.active{
+    color: "#CE8339";
+    font-weight: "bold";
+    border-bottom: "1px solid #CE8339"
+}
 a{
     text-decoration: none;
     color: gray;
